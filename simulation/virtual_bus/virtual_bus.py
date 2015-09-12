@@ -3,7 +3,7 @@
 class VirtualBus(object):
 
 	def __init__(self):
-		self.listeners = [];
+		self.attached_nodes = [];
 
 	def add_node(self, node):
 		"""Attach a node to the bus.
@@ -13,16 +13,16 @@ class VirtualBus(object):
 		All nodes including the sender will hear the message.
 		"""
 
-		self.listeners.append(node);
+		self.attached_nodes.append(node);
 
-	def print_listeners(self):
+	def print_nodes(self):
 		"""Print the nodes attached to the bus"""
-		for listener in self.listeners:
+		for listener in self.attached_nodes:
 			print "Listener: %s" % listener
 
 	def send_message(self, msg):
 		"""Send a message to all of the nodes attached to the virtual bus"""
-		for listener in self.listeners:
+		for listener in self.attached_nodes:
 			listener.hear_message(msg)
 
 

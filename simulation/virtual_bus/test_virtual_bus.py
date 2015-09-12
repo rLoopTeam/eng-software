@@ -22,7 +22,7 @@ def test_virtual_bus_print_nodes(capsys):
 	vb.add_node(1)
 	vb.add_node(2)
 
-	vb.print_listeners();
+	vb.print_nodes();
 
 	out, err = capsys.readouterr()
 
