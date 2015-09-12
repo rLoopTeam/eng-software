@@ -1,4 +1,4 @@
-# Sub-Node Registration Interface
+# Command Interface
 # Author: Darren Midkiff <d.claymidkiff@gmail.com>
 # rLoop Software Engineering Team
 
