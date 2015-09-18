@@ -17,6 +17,7 @@ class SubNode():
 
 	def hear_message(self, mesage):
 		# TODO: Add message functionality
+		pass
 
 	# Generate the UUID.  uuid4 is used, since that is the most random (and
 	# therefore, most secure) generation function in the UUID module.
