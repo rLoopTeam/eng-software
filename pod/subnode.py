@@ -8,6 +8,7 @@ from datetime import datetime
 class SubNode():
 	# Constructor to define subnode instance variables
 	def __init__(self, virtual_bus):
+		self.__id = None
 		self.__datetime = datetime.utcnow()
 		self.__state = None
 		self.__uuid = self.generate_id()
@@ -27,7 +28,7 @@ class SubNode():
 
 	# Logging function
 	def log_current(self):
-		return "Time: %s\nState: %s" % (subnode.get_time(), subnode.get_state())
+		return "Time: %s\nState: %s" % (self.get_time(), self.get_state())
 
 	# Getter functions
 	def get_time(self):
