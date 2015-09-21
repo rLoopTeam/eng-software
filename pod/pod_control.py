@@ -4,6 +4,7 @@ class PodControl:
 	#static strings that are known commands. These should not live here:
 	message_token_delimiter = ';'
 	register_node_with_pod_control_message = 'register_with_pod_control'
+	report_state_message = 'report_state'
 
 	def __init__(self):
 		self.bus = None
@@ -29,7 +30,7 @@ class PodControl:
 
 	def report_state(self):
 		"""Request the current state of every registered sub-system"""
-		self.bus.send_message("report_state")
+		self.bus.send_message(PodControl.report_state_message)
 
 
 	# subsystem control interface
