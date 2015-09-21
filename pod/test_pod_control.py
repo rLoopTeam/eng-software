@@ -32,6 +32,12 @@ def test_pod_control_hear_message():
 	pod_control = PodControl()
 	pod_control.hear_message('test')
 
+def test_pod_control_hear_message_subsytem_state_report():
+	test_report_string = 'subsystem_state_report;test_id;test_state'
+
+	pod_control = PodControl()
+	pod_control.hear_message(test_report_string)
+
 def test_pod_control_register_sub_system():
 	test_string = 'register_with_pod_control;test_id'
 	pod_control = PodControl()

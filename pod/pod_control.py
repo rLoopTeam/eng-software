@@ -4,6 +4,11 @@ class PodControl:
 	#static strings that are known commands. These should not live here:
 	message_token_delimiter = ';'
 	register_node_with_pod_control_message = 'register_with_pod_control'
+
+	# state report message prefix. Full message expected to be in the form:
+	# subsystem_state_report;<sub_system_id>;<state>
+	report_node_state_to_pod_control_message = 'subsystem_state_report'
+
 	report_state_message = 'report_state'
 	report_logs_message = 'report_logs'
 
@@ -46,6 +51,9 @@ class PodControl:
 			#todo the list of nodes contained in the pod_controller should be sub system descriptors
 			message_tokens = msg.split(PodControl.message_token_delimiter)
 			self.node_list.append(message_tokens[1])
+		elif(msg.startswith(PodControl.report_node_state_to_pod_control_message)):
+			message_tokens = msg.split(PodControl.message_token_delimiter)
+			print('subsystem id:%s, state:%s' % (message_tokens[1], message_tokens[2]))
 
 
 
