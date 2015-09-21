@@ -27,3 +27,10 @@ def test_pod_control_report_state():
 def test_pod_control_hear_message():
 	pod_control = PodControl()
 	pod_control.hear_message('test')
+
+def test_pod_control_register_sub_system():
+	pod_control = PodControl()
+	pod_control.hear_message(PodControl.register_node_with_pod_control_message)
+
+	assert(len(pod_control.node_list) == 1)
+	assert(pod_control.node_list[0] == PodControl.register_node_with_pod_control_message)

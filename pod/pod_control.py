@@ -1,8 +1,12 @@
 # pod control system
 
-class PodControl():
+class PodControl:
+	#static strings that are known commands. These should not live here:
+	register_node_with_pod_control_message = 'register_with_pod_control'
+
 	def __init__(self):
 		self.bus = None
+		self.node_list = [];
 
 	def set_bus(self, bus):
 		self.bus = bus
@@ -30,7 +34,16 @@ class PodControl():
 	# subsystem control interface
 	def hear_message(self, msg):
 		"""Recieve messages from the virtual bus that the pod is attached to."""
+		print(msg)
+
 		# TODO parse out the message header to determine who the message's sender,
 		# intended receiver, and payload. For now just print it.
-		print(msg)
+		if(msg == PodControl.register_node_with_pod_control_message):
+			#todo the list of nodes contained in the pod_controller should be sub system descriptors
+			self.node_list.append(msg)
+
+
+		
+
+		
 
