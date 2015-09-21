@@ -2,6 +2,7 @@
 
 class PodControl:
 	#static strings that are known commands. These should not live here:
+	message_token_delimiter = ';'
 	register_node_with_pod_control_message = 'register_with_pod_control'
 
 	def __init__(self):
@@ -38,9 +39,15 @@ class PodControl:
 
 		# TODO parse out the message header to determine who the message's sender,
 		# intended receiver, and payload. For now just print it.
-		if(msg == PodControl.register_node_with_pod_control_message):
+		if(msg.startswith(PodControl.register_node_with_pod_control_message)):
 			#todo the list of nodes contained in the pod_controller should be sub system descriptors
-			self.node_list.append(msg)
+			message_tokens = msg.split(PodControl.message_token_delimiter)
+			self.node_list.append(message_tokens[1])
+
+
+
+
+
 
 
 		
