@@ -5,6 +5,7 @@ class PodControl:
 	message_token_delimiter = ';'
 	register_node_with_pod_control_message = 'register_with_pod_control'
 	report_state_message = 'report_state'
+	report_logs_message = 'report_logs'
 
 	def __init__(self):
 		self.bus = None
@@ -27,6 +28,7 @@ class PodControl:
 		#newLog.close()
 		#return log
 		print('collect_logs')
+		self.bus.send_message(PodControl.report_logs_message)
 
 	def report_state(self):
 		"""Request the current state of every registered sub-system"""

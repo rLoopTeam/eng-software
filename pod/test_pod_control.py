@@ -14,6 +14,10 @@ def test_pod_control_set_bus():
 
 def test_pod_control_collect_logs():
 	pod_control = PodControl()
+
+	virtual_bus = VirtualBus()
+	pod_control.set_bus(virtual_bus)
+
 	pod_control.collect_logs()
 
 def test_pod_control_report_state():
