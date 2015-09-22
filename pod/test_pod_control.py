@@ -38,6 +38,30 @@ def test_pod_control_hear_message_subsytem_state_report():
 	pod_control = PodControl()
 	pod_control.hear_message(test_report_string)
 
+def test_pod_control_hear_message_subsytem_log_report():
+	#test strings
+	test_registration_string = 'register_with_pod_control;test_id'
+	test_report_string = 'subsystem_log_report;test_id;test_log'
+
+	#setup
+	pod_control = PodControl()
+	pod_control.hear_message(test_registration_string)
+	
+	#test
+	pod_control.hear_message(test_report_string)
+
+def test_pod_control_hear_message_subsytem_log_report_done():
+	#test strings
+	test_registration_string = 'register_with_pod_control;test_id'
+	test_report_done_string = 'complete_subsystem_log_report;test_id'
+
+	#setup
+	pod_control = PodControl()
+	pod_control.hear_message(test_registration_string)
+
+	#test
+	pod_control.hear_message(test_report_done_string)
+
 def test_pod_control_register_sub_system():
 	test_string = 'register_with_pod_control;test_id'
 	pod_control = PodControl()
