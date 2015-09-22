@@ -56,7 +56,7 @@ class PodControl:
 	# subsystem control interface
 	def hear_message(self, msg):
 		"""Recieve messages from the virtual bus that the pod is attached to."""
-		print(msg)
+		print msg
 
 		# TODO parse out the message header to determine who the message's sender,
 		# intended receiver, and payload. For now just print it.
@@ -72,7 +72,7 @@ class PodControl:
 
 		elif(msg.startswith(PodControl.report_node_state_to_pod_control_message)):
 			message_tokens = msg.split(PodControl.message_token_delimiter)
-			print('subsystem id:%s, state:%s' % (message_tokens[1], message_tokens[2]))
+			print 'subsystem id:%s, state:%s' % (message_tokens[1], message_tokens[2])
 
 		elif(msg.startswith(PodControl.report_node_log_to_pod_control_message)):
 			message_tokens = msg.split(PodControl.message_token_delimiter)
