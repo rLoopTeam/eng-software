@@ -1,24 +1,9 @@
 # pod control system
 
+from simulation.virtual_bus.virtual_bus import VirtualBus
+
+
 class PodControl:
-	#static strings that are known commands. These should not live here:
-	message_token_delimiter = ';'
-	register_node_with_pod_control_message = 'register_with_pod_control'
-
-	# state report message prefix. Full message expected to be in the form:
-	# subsystem_state_report;<sub_system_id>;<state>
-	report_node_state_to_pod_control_message = 'subsystem_state_report'
-
-	# log report message prefix. Full message expected to be in the form:
-	# subsystem_log_report;<sub_system_id>;<log>
-	report_node_log_to_pod_control_message = 'subsystem_log_report'
-
-	# state report message prefix. Full message expected to be in the form:
-	# subsystem_log_report_done;<sub_system_id>
-	report_node_log_to_pod_control_done_message = 'complete_subsystem_log_report'
-
-	report_state_message = 'report_state'
-	report_logs_message = 'report_logs'
 
 	def __init__(self):
 		self.bus = None
@@ -34,7 +19,7 @@ class PodControl:
 	def collect_logs(self):
 		# since nothing is running async at this point, when this method returns
 		# all log lines should be available
-		self.bus.send_message(PodControl.report_logs_message)
+		self.bus.send_message(VirtualBus.report_logs_message)
 
 		#write all the log lines recived to a file	
 		#myLog = open("commandInterfaceLog.txt", "r")
@@ -50,7 +35,7 @@ class PodControl:
 
 	def report_state(self):
 		"""Request the current state of every registered sub-system"""
-		self.bus.send_message(PodControl.report_state_message)
+		self.bus.send_message(VirtualBus.report_state_message)
 
 
 	# subsystem control interface
@@ -60,9 +45,9 @@ class PodControl:
 
 		# TODO parse out the message header to determine who the message's sender,
 		# intended receiver, and payload. For now just print it.
-		if(msg.startswith(PodControl.register_node_with_pod_control_message)):
+		if(msg.startswith(VirtualBus.register_node_with_pod_control_message)):
 			#todo the list of nodes contained in the pod_controller should be sub system descriptors
-			message_tokens = msg.split(PodControl.message_token_delimiter)
+			message_tokens = msg.split(VirtualBus.message_token_delimiter)
 
 			node_id = message_tokens[1]
 			
@@ -70,20 +55,20 @@ class PodControl:
 			self.node_logs[node_id] = []
 			self.node_logs_complete[node_id] = False
 
-		elif(msg.startswith(PodControl.report_node_state_to_pod_control_message)):
-			message_tokens = msg.split(PodControl.message_token_delimiter)
+		elif(msg.startswith(VirtualBus.report_node_state_to_pod_control_message)):
+			message_tokens = msg.split(VirtualBus.message_token_delimiter)
 			print 'subsystem id:%s, state:%s' % (message_tokens[1], message_tokens[2])
 
-		elif(msg.startswith(PodControl.report_node_log_to_pod_control_message)):
-			message_tokens = msg.split(PodControl.message_token_delimiter)
+		elif(msg.startswith(VirtualBus.report_node_log_to_pod_control_message)):
+			message_tokens = msg.split(VirtualBus.message_token_delimiter)
 
 			node_id = message_tokens[1]
 			log_line = message_tokens[2]
 
 			self.node_logs[node_id].append(log_line)
 			
-		elif(msg.startswith(PodControl.report_node_log_to_pod_control_done_message)):
-			message_tokens = msg.split(PodControl.message_token_delimiter)
+		elif(msg.startswith(VirtualBus.report_node_log_to_pod_control_done_message)):
+			message_tokens = msg.split(VirtualBus.message_token_delimiter)
 
 			node_id = message_tokens[1]
 

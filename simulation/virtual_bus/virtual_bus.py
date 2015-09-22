@@ -1,7 +1,24 @@
 import datetime
 
 class VirtualBus(object):
+	#static strings that are known commands. These should not live here:
+	message_token_delimiter = ';'
+	register_node_with_pod_control_message = 'register_with_pod_control'
 
+	# state report message prefix. Full message expected to be in the form:
+	# subsystem_state_report;<sub_system_id>;<state>
+	report_node_state_to_pod_control_message = 'subsystem_state_report'
+
+	# log report message prefix. Full message expected to be in the form:
+	# subsystem_log_report;<sub_system_id>;<log>
+	report_node_log_to_pod_control_message = 'subsystem_log_report'
+
+	# state report message prefix. Full message expected to be in the form:
+	# subsystem_log_report_done;<sub_system_id>
+	report_node_log_to_pod_control_done_message = 'complete_subsystem_log_report'
+
+	report_state_message = 'report_state'
+	report_logs_message = 'report_logs'
 	def __init__(self):
 		self.attached_nodes = [];
 		self.log_filename =  'virtual_bus_log.txt'
