@@ -16,3 +16,12 @@ def test_basic_node_set_bus():
 	basic_node.set_bus(virtual_bus)
 
 	assert basic_node.bus == virtual_bus
+
+def test_basic_node_register_with_pod_controller():
+	virtual_bus = VirtualBus()
+
+	basic_node = BasicNode()
+
+	basic_node.set_bus(virtual_bus)
+
+	basic_node.register_with_pod_controller()
