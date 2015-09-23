@@ -17,8 +17,12 @@ class BasicNode(BaseNode):
 
 	def set_bus(self, bus):
 		self.bus = bus
+		self.bus.add_node(self)
 
 	def register_with_pod_controller(self):
 		registration_message = '%s%s%s' % (VirtualBus.register_node_with_pod_control_message, VirtualBus.message_token_delimiter, self.id)
 
 		self.bus.send_message(registration_message)
+
+	def hear_message(self, msg):
+		print 'msg:%s' % msg
