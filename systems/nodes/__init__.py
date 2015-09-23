@@ -1,5 +1,8 @@
 from base import BaseNode
-from test import TestNode
+from basic_node import BasicNode
 from launch import LaunchNode
+from test import TestNode
 
-__all__ = ['BaseNode', 'TestNode', 'LaunchNode']
+
+
+__all__ = ['BaseNode', 'BasicNode', 'LaunchNode', 'TestNode']
