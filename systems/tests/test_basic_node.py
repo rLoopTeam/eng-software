@@ -25,3 +25,21 @@ def test_basic_node_register_with_pod_controller():
 	basic_node.set_bus(virtual_bus)
 
 	basic_node.register_with_pod_controller()
+
+def test_basic_node_report_state():
+	virtual_bus = VirtualBus()
+
+	basic_node = BasicNode()
+
+	basic_node.set_bus(virtual_bus)
+
+	basic_node.hear_message(VirtualBus.report_state_message)
+
+def test_basic_node_report_logs():
+	virtual_bus = VirtualBus()
+
+	basic_node = BasicNode()
+
+	basic_node.set_bus(virtual_bus)
+
+	basic_node.hear_message(VirtualBus.report_logs_message)

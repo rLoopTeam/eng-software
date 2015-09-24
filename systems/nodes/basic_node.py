@@ -25,4 +25,45 @@ class BasicNode(BaseNode):
 		self.bus.send_message(registration_message)
 
 	def hear_message(self, msg):
-		print 'msg:%s' % msg
+		"""Recieve messages from the virtual bus that the pod is attached to."""
+		print msg
+
+		# there are only two messages that the basic node will respond to. A
+		# request for node state and a request for logs
+		
+		if(msg.startswith(VirtualBus.report_state_message)):
+			# respond to the request for state with a fake state
+			# TODO: hook up the internal state manager to this node
+
+			state_message = VirtualBus.report_node_state_to_pod_control_message
+			state_message += VirtualBus.message_token_delimiter
+			state_message += str(self.id)
+			state_message += VirtualBus.message_token_delimiter
+			state_message += 'place_holder_state'
+
+			self.bus.send_message(state_message)
+
+
+		elif(msg.startswith(VirtualBus.report_logs_message)):
+			# respond to the request for logs with multiple fake log messages
+			# TODO: store actual logs and return them when requested
+
+			for i in range(0, 10):
+				log_message = self.generate_log_message(str(i))
+				self.bus.send_message(log_message)
+
+			complete_log_sending_message = VirtualBus.report_node_log_to_pod_control_done_message
+			complete_log_sending_message += VirtualBus.message_token_delimiter
+			complete_log_sending_message += str(self.id)
+
+			self.bus.send_message(complete_log_sending_message)
+
+	def generate_log_message(self, log_contents):
+		log_message = VirtualBus.report_node_log_to_pod_control_message
+		log_message += VirtualBus.message_token_delimiter
+		log_message += str(self.id)
+		log_message += VirtualBus.message_token_delimiter
+		log_message += log_contents
+
+		return log_message
+
