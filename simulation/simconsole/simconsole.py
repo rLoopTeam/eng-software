@@ -18,6 +18,7 @@ print "Choose a test to run, or enter 0 to run all:"
 print "0. Add basic node"
 print "1. Request State Report"
 print "2. Collect Logs"
+print "3. Quit"
 
 while True:
     selection = raw_input("Enter your selection: ")
@@ -32,5 +33,7 @@ while True:
         pod_control.report_state()
     elif selection == "2":
         pod_control.collect_logs()
+    elif selection == "3":
+        break;
     else:
         print "Invalid selection."
