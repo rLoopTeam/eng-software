@@ -8,6 +8,7 @@ class BasicNode(BaseNode):
 	def __init__(self):
 		self.bus = None
 		self.id = uuid.uuid4()
+		print 'creating new node. id:%s' % self.id
 
 	def setup(self):
 		pass
@@ -26,7 +27,7 @@ class BasicNode(BaseNode):
 
 	def hear_message(self, msg):
 		"""Recieve messages from the virtual bus that the pod is attached to."""
-		print msg
+		#print msg
 
 		# there are only two messages that the basic node will respond to. A
 		# request for node state and a request for logs

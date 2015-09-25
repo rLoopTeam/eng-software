@@ -41,7 +41,7 @@ class PodControl:
 	# subsystem control interface
 	def hear_message(self, msg):
 		"""Recieve messages from the virtual bus that the pod is attached to."""
-		print msg
+		#print msg
 
 		# TODO parse out the message header to determine who the message's sender,
 		# intended receiver, and payload. For now just print it.
