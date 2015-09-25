@@ -23,11 +23,11 @@ class PodControl:
 
 		#write all the log lines recived to a file	
 		#myLog = open("commandInterfaceLog.txt", "r")
-		newLog = open("log.txt", "r+")
+		newLog = open("log.txt", "w")
 		newLog.write("Combined Log" + "\n \n")
-		for node, log_lines in self.node_logs:
+		for node, log_lines in self.node_logs.iteritems():
 			for log_line in log_lines:
-				newLog.write('%s -- %s' % (node, log_line))
+				newLog.write('%s -- %s\n' % (node, log_line))
 		#log = newLog.read()
 		#myLog.close()
 		newLog.close()
