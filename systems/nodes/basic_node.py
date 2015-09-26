@@ -2,12 +2,13 @@ import uuid
 
 from base import BaseNode
 from simulation.virtual_bus.virtual_bus import VirtualBus
+from systems.Systems_InternalStateManager import InternalStateManager
 
 class BasicNode(BaseNode):
-
 	def __init__(self):
 		self.bus = None
 		self.id = uuid.uuid4()
+		self.ISM = InternalStateManager()
 
 	def setup(self):
 		pass
@@ -39,7 +40,7 @@ class BasicNode(BaseNode):
 			state_message += VirtualBus.message_token_delimiter
 			state_message += str(self.id)
 			state_message += VirtualBus.message_token_delimiter
-			state_message += 'place_holder_state'
+			state_message += str(self.ISM.ISM_GetCurrentState())
 
 			self.bus.send_message(state_message)
 
@@ -57,6 +58,9 @@ class BasicNode(BaseNode):
 			complete_log_sending_message += str(self.id)
 
 			self.bus.send_message(complete_log_sending_message)
+	
+	def get_state(self):
+		return self.ISM.ISM_GetCurrentState()
 
 	def generate_log_message(self, log_contents):
 		log_message = VirtualBus.report_node_log_to_pod_control_message
