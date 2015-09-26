@@ -5,6 +5,8 @@ from simulation.virtual_bus.virtual_bus import VirtualBus
 from systems.Systems_InternalStateManager import InternalStateManager
 
 class BasicNode(BaseNode):
+
+	
 	def __init__(self):
 		self.bus = None
 		self.id = uuid.uuid4()
