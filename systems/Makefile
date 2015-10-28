@@ -11,11 +11,11 @@ MKDIR   = mkdir -p
 
 # the ino -> o file
 # $(OBJDIR)/%.ino.o: %.ino $(COMMON_DEPS) | $(OBJDIR)
-$(OBJDIR)/%.ino.o: %.ino
+$(OBJDIR)/%.o: %.c
 	@$(MKDIR) $(dir $@)
-	$(CXX) -x c++ -include $(ARDUINO_HEADER) -MMD -c $(CPPFLAGS) $(CXXFLAGS) $< -o $@
+	$(CXX) -x c++ -include $(ARDUINO_HEADER) -MMD $(CPPFLAGS) $(CXXFLAGS) $< -o $@
 
-all: $(OBJDIR)/SystemNode.ino.o
+all: $(OBJDIR)/SystemNode.o
 
 clean:
 	$(REMOVE) build/
