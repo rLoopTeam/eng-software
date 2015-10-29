@@ -18,7 +18,7 @@ MKDIR   = mkdir -p
 
 $(OBJDIR)/%.o: %.c
 	@$(MKDIR) $(dir $@)
-	$(CXX) -x c++ -include $(ARDUINO_HEADER) -MMD $(CPPFLAGS) $(CXXFLAGS) $< $(ARDUINO_CORE_PATH)/main.cpp -o $@
+	$(CXX) -x c++ -include $(ARDUINO_HEADER) -MMD $(CPPFLAGS) $(CXXFLAGS) $< $(ARDUINO_CORE_PATH)/main.cpp $(ARDUINO_CORE_PATH)/pins_teensy.c -o $@
 
 all: $(OBJDIR)/SystemNode.o
 
