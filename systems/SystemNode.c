@@ -1,4 +1,5 @@
 #include "WProgram.h"
+#include <Serial.h>
 
 void setup() {
     pinMode(13, OUTPUT);
